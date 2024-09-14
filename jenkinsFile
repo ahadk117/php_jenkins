@@ -1,14 +1,14 @@
 pipeline {
     agent any
     environment {
-        staging_server = "139.59.34.158"
-        staging_port = "8080"
+        staging_server="139.59.34.158"
+       
     }
 
     stages {
         stage('Deploy to Remote') {
             steps {
-                sh "scp -P ${staging_port} ${WORKSPACE}/* root@${staging_server}:/var/www/html/phpwebapp/"
+                sh "scp -r ${WORKSPACE}/* root@${staging_server}:/var/www/html/phpwebapp/"
             }
         }
     }
