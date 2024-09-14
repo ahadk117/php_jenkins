@@ -2,20 +2,13 @@ pipeline {
     agent any
     environment {
         staging_server = "139.59.34.158"
-        staging_user = "root"  // Define the user for SSH connections
-        staging_path = "/var/www/html/phpwebapp/"  // Define the target path for deployment
-        ssh_port = "8080"  // Define the port for SSH connection
+        staging_port = "8080"
     }
 
     stages {
         stage('Deploy to Remote') {
             steps {
-                script {
-                    // Ensure SSH key is properly set up
-                    sh """
-                        scp -P ${ssh_port} -i /path/to/your/private/key -r ${WORKSPACE}/* ${staging_user}@${staging_server}:${staging_path}
-                    """
-                }
+                sh "scp -P ${staging_port} ${WORKSPACE}/* root@${staging_server}:/var/www/html/phpwebapp/"
             }
         }
     }
