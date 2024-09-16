@@ -1,14 +1,15 @@
 pipeline {
     agent any
     environment {
-        staging_server="143.110.243.191"
-       
+        STAGING_SERVER = "143.110.243.191"
+        SSH_PASSWORD = credentials('Ahad@0786')  
     }
-
     stages {
-        stage('Deploy  to Remote') {
+        stage('Deploy to Remote') {
             steps {
-                sh "scp -o StrictHostKeyChecking=no -r ${WORKSPACE}/* root@${staging_server}:/var/www/html/phpwebapp/"
+                sh """
+                sshpass -p \$SSH_PASSWORD scp -o StrictHostKeyChecking=no -r ${WORKSPACE}/* root@${STAGING_SERVER}:/var/www/html/phpwebapp/
+                """
             }
         }
     }
