@@ -7,10 +7,21 @@ pipeline {
     stages {
         stage('Deploy to Remote') {
             steps {
-                sh """
-                sshpass -p \$SSH_PASSWORD scp -o StrictHostKeyChecking=no -r ${WORKSPACE}/* root@${STAGING_SERVER}:/var/www/html/phpwebapp/
-                """
+                script {
+                    // Write password to a file to be used by sshpass
+                    writeFile file: 'sshpass-password.txt', text: "${SSH_PASSWORD}"
+                    
+                    sh """
+                    sshpass -f sshpass-password.txt scp -o StrictHostKeyChecking=no -r ${WORKSPACE}/* root@${STAGING_SERVER}:/var/www/html/phpwebapp/
+                    """
+                }
             }
+        }
+    }
+    post {
+        always {
+            // Clean up the password file
+            sh 'rm -f sshpass-password.txt'
         }
     }
 }
