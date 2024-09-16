@@ -2,17 +2,28 @@ pipeline {
     agent any
     environment {
         STAGING_SERVER = "143.110.243.191"
-        SSH_KEY_ID = 'phpjenkinsserver'  // Jenkins SSH key credentials ID
     }
     stages {
         stage('Deploy to Remote') {
             steps {
-                sshagent ([SSH_KEY_ID]) {
+                script {
+                    // Access the password from Jenkins credentials
+                    def sshPassword = credentials('phpjenkinsserver')
+                    
+                    // Write password to a file to be used by sshpass
+                    writeFile file: 'sshpass-password.txt', text: "${sshPassword}"
+                    
                     sh """
-                    scp -o StrictHostKeyChecking=no -r ${WORKSPACE}/* root@${STAGING_SERVER}:/var/www/html/phpwebapp/
+                    sshpass -f sshpass-password.txt scp -o StrictHostKeyChecking=no -r ${WORKSPACE}/* root@${STAGING_SERVER}:/var/www/html/phpwebapp/
                     """
                 }
             }
+        }
+    }
+    post {
+        always {
+            // Clean up the password file
+            sh 'rm -f sshpass-password.txt'
         }
     }
 }
