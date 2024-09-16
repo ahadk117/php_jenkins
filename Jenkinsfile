@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Deploy  to Remote') {
             steps {
-                sh "scp -r ${WORKSPACE}/* root@${staging_server}:/var/www/html/phpwebapp/"
+                sh "scp -o StrictHostKeyChecking=no -r ${WORKSPACE}/* root@${staging_server}:/var/www/html/phpwebapp/"
             }
         }
     }
