@@ -2,14 +2,16 @@ pipeline {
     agent any
     environment {
         STAGING_SERVER = "143.110.243.191"
-        SSH_PASSWORD = credentials('phpjenkinsserver')  
     }
     stages {
         stage('Deploy to Remote') {
             steps {
                 script {
+                    // Access the password from Jenkins credentials
+                    def sshPassword = credentials('phpjenkinsserver')
+                    
                     // Write password to a file to be used by sshpass
-                    writeFile file: 'sshpass-password.txt', text: "${SSH_PASSWORD}"
+                    writeFile file: 'sshpass-password.txt', text: "${sshPassword}"
                     
                     sh """
                     sshpass -f sshpass-password.txt scp -o StrictHostKeyChecking=no -r ${WORKSPACE}/* root@${STAGING_SERVER}:/var/www/html/phpwebapp/
