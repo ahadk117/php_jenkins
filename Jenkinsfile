@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         STAGING_SERVER = "143.110.243.191"
-        SSH_PASSWORD = credentials('Ahad@0786')  
+        SSH_PASSWORD = credentials('phpjenkinsserver')  
     }
     stages {
         stage('Deploy to Remote') {
