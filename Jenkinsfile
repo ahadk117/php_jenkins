@@ -4,7 +4,7 @@ pipeline {
         stage('Deploy to Remote') {
             steps {
                 sshPublisher(publishers: [sshPublisherDesc(
-                    configName: 'MySSHConfig',
+                    configName: 'config',
                     transfers: [sshTransfer(
                         sourceFiles: '**/*',
                         remoteDirectory: '/var/www/html/phpwebapp/',
