@@ -6,7 +6,14 @@ function dbConnect()
     $user = "root";
     $pass = "";
 
-    return new mysqli($host, $user, $pass, $db);
+    $conn = new mysqli($host, $user, $pass, $db);
+
+    if ($conn->connect_error) {
+        echo "not connected";
+        die;
+    }
+    echo "connected";
+    die;
 }
 
 function insertMessage($post)
