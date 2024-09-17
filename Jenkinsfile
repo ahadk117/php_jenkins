@@ -1,14 +1,17 @@
 pipeline {
     agent any
     environment {
-        staging_server="143.110.243.191"
-       
+        STAGING_SERVER = "143.110.243.191"
+        SSH_KEY_ID = 'php-jenkins-server'
     }
-
     stages {
-        stage('Deploy  to Remote') {
+        stage('Deploy to Remote') {
             steps {
-                sh "scp -r ${WORKSPACE}/* root@${staging_server}:/var/www/html/phpwebapp/"
+                sshagent ([SSH_KEY_ID]) {
+                    sh """
+                    scp -o StrictHostKeyChecking=no -r ${WORKSPACE}/* root@${STAGING_SERVER}:/var/www/html/phpwebapp/
+                    """
+                }
             }
         }
     }
