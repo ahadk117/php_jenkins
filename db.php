@@ -19,18 +19,18 @@ function dbConnect()
 function insertMessage($post)
 {
     // get the post records
-    $txtName = $post['txtName'];
-    $txtEmail = $post['txtEmail'];
-    $txtPhone = $post['txtPhone'];
-    $txtMessage = $post['txtMessage'];
+    // $txtName = $post['txtName'];
+    // $txtEmail = $post['txtEmail'];
+    // $txtPhone = $post['txtPhone'];
+    // $txtMessage = $post['txtMessage'];
 
     $conn = dbConnect();
 
-    $query = "insert into messages(name, email, phone, message) values ( 
-                '$txtName', '$txtEmail', '$txtPhone', '$txtMessage')";
+    // $query = "insert into messages(name, email, phone, message) values ( 
+    //             '$txtName', '$txtEmail', '$txtPhone', '$txtMessage')";
 
-    $res = $conn->query($query);
-    $conn->close();
+    // $res = $conn->query($query);
+    // $conn->close();
 }
 
 function printMessages()
