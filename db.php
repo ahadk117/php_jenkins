@@ -1,6 +1,8 @@
 <?php
 function dbConnect()
 {
+
+    var_dump('ddddddddd');die;
     $db = "ttbs_hrms";
     $host = "10.180.67.42";
     $user = "manish";
