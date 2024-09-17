@@ -2,7 +2,7 @@
 function dbConnect()
 {
 
-    var_dump('ddddddddd');die;
+  
     $db = "ttbs_hrms";
     $host = "10.180.67.42";
     $user = "manish";
@@ -13,6 +13,7 @@ function dbConnect()
         echo "not connected";
         die;
     }
+      var_dump($conn);die;
     return $conn;
 }
 
