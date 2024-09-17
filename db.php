@@ -3,10 +3,10 @@ function dbConnect()
 {
 
   
-   $db = "ttbs_hrms";
-$host = "10.180.67.42";
-$user = "manish";
-$pass = "manish@#$123";
+   $db = "test_db";
+$host = "143.110.243.191";
+$user = "ahadkhalid";
+$pass = "Ahad@0786";
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 var_dump($conn);die;
