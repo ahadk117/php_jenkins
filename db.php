@@ -1,14 +1,16 @@
 <?php
-function dbConnect() {
+function dbConnect()
+{
     $db = "testdb";
-    $host = "localhost";
+    $host = "143.110.243.191";
     $user = "root";
     $pass = "";
 
     return new mysqli($host, $user, $pass, $db);
 }
 
-function insertMessage($post) {
+function insertMessage($post)
+{
     // get the post records
     $txtName = $post['txtName'];
     $txtEmail = $post['txtEmail'];
@@ -19,29 +21,27 @@ function insertMessage($post) {
 
     $query = "insert into messages(name, email, phone, message) values ( 
                 '$txtName', '$txtEmail', '$txtPhone', '$txtMessage')";
-    
+
     $res = $conn->query($query);
     $conn->close();
 }
 
-function printMessages() {
+function printMessages()
+{
     $conn = dbConnect();
     $query = "select * from messages";
     $res = $conn->query($query);
-    
-    if($res->num_rows > 0) {
+
+    if ($res->num_rows > 0) {
         echo "<table>";
-        while($row = $res->fetch_assoc()) {
+        while ($row = $res->fetch_assoc()) {
             echo "<tr>";
-                echo "<td>".$row["ID"]."</td><td>".$row["name"].
-                "</td><td>".$row["email"]."</td><td>".$row["phone"]."</td><td>".$row["message"]."</td>";
+            echo "<td>" . $row["ID"] . "</td><td>" . $row["name"] .
+                "</td><td>" . $row["email"] . "</td><td>" . $row["phone"] . "</td><td>" . $row["message"] . "</td>";
             echo "</tr>";
             #echo "<br>";
         }
         echo "</table>";
     }
     $conn->close();
-
-
 }
-?>

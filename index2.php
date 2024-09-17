@@ -1,0 +1,4 @@
+<?php
+echo "ahad khalid ";
+
+?>
