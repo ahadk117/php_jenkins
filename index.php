@@ -1,4 +1,4 @@
 <?php
-echo "ahad khalid ";
+echo "abdul ahad khalid ";
 
 ?>
