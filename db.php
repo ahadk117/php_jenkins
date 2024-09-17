@@ -3,17 +3,19 @@ function dbConnect()
 {
 
   
-    $db = "ttbs_hrms";
-    $host = "10.180.67.42";
-    $user = "manish";
-    $pass = "manish@#$123";
-    $conn = new mysqli($host, $user, $pass, $db);
+   $db = "ttbs_hrms";
+$host = "10.180.67.42";
+$user = "manish";
+$pass = "manish@#$123";
 
-    if ($conn->connect_error) {
-        echo "not connected";
-        die;
-    }
-      var_dump($conn);die;
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+if (!$conn) {
+    echo "Connection failed: " . mysqli_connect_error();
+    exit;
+}
+
+var_dump($conn);die;
     return $conn;
 }
 
