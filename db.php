@@ -7,9 +7,9 @@ function dbConnect()
 $host = "143.110.243.191";
 $user = "ahadkhalid";
 $pass = "Ahad@0786";
-
+var_dump($host, $user, $pass, $db);die;
 $conn = mysqli_connect($host, $user, $pass, $db);
-var_dump($conn);die;
+
 if (!$conn) {
     echo "Connection failed: " . mysqli_connect_error();
     exit;
