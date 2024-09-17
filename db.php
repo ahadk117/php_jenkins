@@ -1,12 +1,12 @@
 <?php
 function dbConnect()
 {
-    $db = "ttbs_hrms";
-    $host = "10.180.67.42";
-    $user = "manish";
-    $pass = "manish@#$123";
+    $db = "test_db";
+    $host = "143.110.243.191";
+    $user = "ahadkhalid";
+    $pass = "Ahad@0786";
     $conn = new mysqli($host, $user, $pass, $db);
-
+    
     if ($conn->connect_error) {
         echo "not connected";
         die;
@@ -24,7 +24,7 @@ function insertMessage($post)
 
     $conn = dbConnect();
 
-    $query = "insert into messages_test(name, email, phone, message) values ( 
+    $query = "insert into messages(name, email, phone, message) values ( 
                 '$txtName', '$txtEmail', '$txtPhone', '$txtMessage')";
 
     $res = $conn->query($query);
@@ -34,7 +34,7 @@ function insertMessage($post)
 function printMessages()
 {
     $conn = dbConnect();
-    $query = "select * from messages_test";
+    $query = "select * from messages";
     $res = $conn->query($query);
 
     if ($res->num_rows > 0) {
