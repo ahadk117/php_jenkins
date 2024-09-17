@@ -9,13 +9,13 @@ $user = "manish";
 $pass = "manish@#$123";
 
 $conn = mysqli_connect($host, $user, $pass, $db);
-
+var_dump($conn);die;
 if (!$conn) {
     echo "Connection failed: " . mysqli_connect_error();
     exit;
 }
 
-var_dump($conn);die;
+
     return $conn;
 }
 
