@@ -1,42 +1,40 @@
 <?php
 function dbConnect()
 {
-    $db = "testdb";
-    $host = "143.110.243.191";
-    $user = "root";
-    $pass = "";
-
+    $db = "ttbs_hrms";
+    $host = "10.180.67.42";
+    $user = "manish";
+    $pass = "manish@#$123";
     $conn = new mysqli($host, $user, $pass, $db);
 
     if ($conn->connect_error) {
         echo "not connected";
         die;
     }
-    echo "connected";
-    die;
+    return $conn;
 }
 
 function insertMessage($post)
 {
     // get the post records
-    // $txtName = $post['txtName'];
-    // $txtEmail = $post['txtEmail'];
-    // $txtPhone = $post['txtPhone'];
-    // $txtMessage = $post['txtMessage'];
+    $txtName = $post['txtName'];
+    $txtEmail = $post['txtEmail'];
+    $txtPhone = $post['txtPhone'];
+    $txtMessage = $post['txtMessage'];
 
     $conn = dbConnect();
 
-    // $query = "insert into messages(name, email, phone, message) values ( 
-    //             '$txtName', '$txtEmail', '$txtPhone', '$txtMessage')";
+    $query = "insert into messages_test(name, email, phone, message) values ( 
+                '$txtName', '$txtEmail', '$txtPhone', '$txtMessage')";
 
-    // $res = $conn->query($query);
-    // $conn->close();
+    $res = $conn->query($query);
+    $conn->close();
 }
 
 function printMessages()
 {
     $conn = dbConnect();
-    $query = "select * from messages";
+    $query = "select * from messages_test";
     $res = $conn->query($query);
 
     if ($res->num_rows > 0) {
