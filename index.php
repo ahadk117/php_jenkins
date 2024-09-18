@@ -12,7 +12,7 @@ table, th, td {
 <body>
 
 <?php
-var_dump('ddddd');die;
+// var_dump('ddddd');die;
 include "db.php";
 
 if(isset($_GET["send"]) && $_GET["send"] == 1) {
@@ -27,6 +27,7 @@ echo "<hr>Enter data into the form to insert to database";
 
 <fieldset>
 <legend>Contact Form</legend>
+<a href="/test.php">test page redirect</a>
 <form name="frmContact" method="post" action="index.php?send=1">
 <p>
 <label for="Name">Name </label>
