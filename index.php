@@ -12,7 +12,6 @@ table, th, td {
 <body>
 
 <?php
-// var_dump('ddddd');die;
 include "db.php";
 
 if(isset($_GET["send"]) && $_GET["send"] == 1) {
