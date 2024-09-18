@@ -26,7 +26,7 @@ echo "<hr>Enter data into the form to insert to database";
 
 <fieldset>
 <legend>Contact Form</legend>
-<a href="/test.php">test page redirect</a>
+<a href="phpwebapp/test.php">test page redirect</a>
 <form name="frmContact" method="post" action="index.php?send=1">
 <p>
 <label for="Name">Name </label>
